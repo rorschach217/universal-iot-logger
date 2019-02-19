@@ -1,7 +1,7 @@
 import dht11
 import imp
 
-api = imp.load_source('api', '../api/api.py')
+api = imp.load_source('api', 'api/api.py')
 
 instance = dht11.DHT11(pin=4)
 
