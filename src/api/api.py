@@ -12,5 +12,5 @@ def postDataToServer(data):
     print data
     request = requests.post(url, data=data)
     if request.status_code != 200:
-            print "Error:", r1.status_code
+            print "Error:", request.status_code
     return
