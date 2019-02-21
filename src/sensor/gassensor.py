@@ -5,6 +5,7 @@ sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 
 import api as api
 
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(27, GPIO.IN)
 g=GPIO.input(27)
 
