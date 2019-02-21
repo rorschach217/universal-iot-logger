@@ -65,7 +65,7 @@ while True:
                 	log_ir["departmentId"]= "PLANT"
                 	log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
 		
-		if g==False:    #When output from motion sensor is LOW
+		if g==True:    #When output from motion sensor is LOW
                         log_gas["deviceId"]= "GAS"
                         log_gas["logValue"]= result2
                         log_gas["deviceType"]= "gas"
@@ -80,7 +80,7 @@ while True:
                         log_gas["departmentId"]= "PLANT"
                         log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
 		
-		if f==False:    #When output from motion sensor is LOW
+		if f==True:    #When output from motion sensor is LOW
                         log_flame["deviceId"]= "FLAME"
                         log_flame["logValue"]= result3
                         log_flame["deviceType"]= "flame"
@@ -95,59 +95,59 @@ while True:
                         log_flame["departmentId"]= "PLANT"
                         log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
 
-               	# url="http://iotserver.codeofgyan.com/logs"
-		url="http://192.168.137.166:8080/logs"
+	         	url="http://iotserver.codeofgyan.com/logs"
+#			url="http://192.168.137.166:8080/logs"
 
-                r1 = requests.post(url, data=log_temp)
-                r2 = requests.post(url, data=log_humi)
-		r3 = requests.post(url, data=log_ir)
-		r4 = requests.post(url, data=log_gas)
-		r5 = requests.post(url, data=log_flame)
+                	r1 = requests.post(url, data=log_temp)
+                	r2 = requests.post(url, data=log_humi)
+			r3 = requests.post(url, data=log_ir)
+			r4 = requests.post(url, data=log_gas)
+			r5 = requests.post(url, data=log_flame)
 
-                if r1.status_code != 200:
-                        print "Error:", r1.status_code
+                	if r1.status_code != 200:
+                        	print "Error:", r1.status_code
 
-                if r2.status_code != 200:
-                        print "Error:", r2.status_code
+	                if r2.status_code != 200:
+        	                print "Error:", r2.status_code
 
-		if r3.status_code != 200:
-                        print "Error:", r3.status_code
+			if r3.status_code != 200:
+                        	print "Error:", r3.status_code
 		
-		if r4.status_code != 200:
-                        print "Error:", r3.status_code
+			if r4.status_code != 200:
+                        	print "Error:", r3.status_code
 		
-		if r5.status_code != 200:
-                        print "Error:", r3.status_code
+			if r5.status_code != 200:
+                        	print "Error:", r3.status_code
 
-		ts = time.time()
+			ts = time.time()
                 
 		#insert temperature data into sql
-                cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"TEMPSENSE", result.temperature, "temperature", "degree", "PLANT", "b8:27:eb:4a:65:3c"))
+                	cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"TEMPSENSE", result.temperature, "temperature", "degree", "PLANT", "b8:27:eb:4a:65:3c"))
 
                 #insert humidity data into sql
-                cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"HUMISENSE", result.humidity, "humidity", "%", "PLANT", "b8:27:eb:4a:65:3c"))
+	                cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"HUMISENSE", result.humidity, "humidity", "%", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert nir data into sql
-                cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "NO INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
+         	        cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "NO INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
         
 		#insert ir data into sql
-                cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
+                	cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert ng data into sql
-		cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"GAS", result2, "gas", "GAS NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
+			cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"GAS", result2, "gas", "GAS NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert g data into sql
-		cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"GAS", result2, "gas", "GAS DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
+			cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"GAS", result2, "gas", "GAS DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert nf data into sql
-		cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "flame", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
+			cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "flame", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert ng data into sql
-		cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "flame", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
+			cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "flame", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
 	        
-		conn.commit()
-
-                time.sleep(1)
+			conn.commit()
+	
+                	time.sleep(1)
 
 conn.close()
 
