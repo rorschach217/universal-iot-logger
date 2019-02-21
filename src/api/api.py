@@ -1,9 +1,11 @@
 import requests
-sys.path.append(os.path.dirname(os.path.realpath('src/constants.py')))
-
 import sys, os
 
-url = baseurl + "/logs"
+sys.path.append(os.path.dirname(os.path.realpath('src/constants.py')))
+
+import constants as constant
+
+url = constant.baseurl + "/logs"
 
 def postDataToServer(data):
     print url
