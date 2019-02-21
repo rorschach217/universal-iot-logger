@@ -1,4 +1,5 @@
 import sys, os
+import RPi.GPIO as GPIO
 
 sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 
