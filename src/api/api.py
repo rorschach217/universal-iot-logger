@@ -7,6 +7,7 @@ url = baseurl + "/logs"
 
 def postDataToServer(data):
     print url
+    print data
     request = requests.post(url, data=data)
     if request.status_code != 200:
             print "Error:", r1.status_code
