@@ -25,8 +25,6 @@ def readSensorData(parameter):
         log_humi["valuePrefix"]= "%"
         log_humi["departmentId"]= "PLANT"
         log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
-    print log_temp
-    print log_humi
     api.postDataToServer(log_temp)
     api.postDataToServer(log_humi)
     return
