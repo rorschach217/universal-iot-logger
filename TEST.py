@@ -95,24 +95,24 @@ while True:
     url="http://iotserver.codeofgyan.com/logs"
     # url="http://192.168.137.166:8080/logs"
 
-    # r1 = requests.post(url, data=log_temp)
-    # r2 = requests.post(url, data=log_humi)
+    r1 = requests.post(url, data=log_temp)
+    r2 = requests.post(url, data=log_humi)
     r3 = requests.post(url, data=log_ir)
     r4 = requests.post(url, data=log_gas)
     r5 = requests.post(url, data=log_flame)
 
-    # if r1.status_code != 200:
-    #     print "Error:", r1.status_code
-    #
-    # if r2.status_code != 200:
-    #     print "Error:", r2.status_code
+    if r1.status_code != 200:
+        print "Error:", r1.status_code
+
+    if r2.status_code != 200:
+        print "Error:", r2.status_code
 
     if r3.status_code != 200:
         print "Error:", r3.status_code
 
     if r4.status_code != 200:
         print "Error:", r3.status_code
-    #
+
     if r5.status_code != 200:
         print "Error:", r3.status_code
 
