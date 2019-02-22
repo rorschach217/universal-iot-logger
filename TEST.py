@@ -107,11 +107,11 @@ while True:
     # if r2.status_code != 200:
     #     print "Error:", r2.status_code
 
-    if r3.status_code != 200:
-        print "Error:", r3.status_code
-
-    # if r4.status_code != 200:
+    # if r3.status_code != 200:
     #     print "Error:", r3.status_code
+
+    if r4.status_code != 200:
+        print "Error:", r3.status_code
     #
     # if r5.status_code != 200:
     #     print "Error:", r3.status_code
