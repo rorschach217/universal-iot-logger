@@ -6,10 +6,6 @@ sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 
 import api as api
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.cleanup()
-
 instance = dht11.DHT11(pin=4)
 
 def readSensorData(parameter):
