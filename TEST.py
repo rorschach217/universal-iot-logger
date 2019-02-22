@@ -111,27 +111,27 @@ while True:
 	        print "Error:", r2.status_code
 
 		if r3.status_code != 200:
-                       	print "Error:", r3.status_code
+           	print "Error:", r3.status_code
 
 		if r4.status_code != 200:
-                       	print "Error:", r3.status_code
+           	print "Error:", r3.status_code
 
 		if r5.status_code != 200:
-                       	print "Error:", r3.status_code
+           	print "Error:", r3.status_code
 
 		ts = time.time()
 
 		#insert temperature data into sql
-                cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"TEMPSENSE", result.temperature, "temperature", "degree", "PLANT", "b8:27:eb:4a:65:3c"))
+        cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"TEMPSENSE", result.temperature, "temperature", "degree", "PLANT", "b8:27:eb:4a:65:3c"))
 
-                #insert humidity data into sql
-	        cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"HUMISENSE", result.humidity, "humidity", "%", "PLANT", "b8:27:eb:4a:65:3c"))
+        #insert humidity data into sql
+        cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"HUMISENSE", result.humidity, "humidity", "%", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert nir data into sql
-         	cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "NO INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
+     	cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "NO INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert ir data into sql
-                cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
+        cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
 
 		#insert ng data into sql
 		cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"AIR QUALITY", result2, "GAS SENSOR", "PURE", "PLANT", "b8:27:eb:4a:65:3c"))
