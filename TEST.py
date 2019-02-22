@@ -19,7 +19,7 @@ GPIO.setup(22, GPIO.IN)
 
 # read data using pin 4
 instance = dht11.DHT11(pin=4)
-# result1 = GPIO.input(17)
+result1 = GPIO.input(17)
 result2 = GPIO.input(27)
 result3 = GPIO.input(22)
 
@@ -46,20 +46,20 @@ while True:
         log_humi["departmentId"]= "PLANT"
         log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
 
-    # if GPIO.input(17)==False:
-    #     log_ir["deviceId"]= "IR"
-    #     log_ir["logValue"]= 0
-    #     log_ir["deviceType"]= "ir"
-    #     log_ir["valuePrefix"]= "NO INTRUDER DETECTION"
-    #     log_ir["departmentId"]= "PLANT"
-    #     log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
-    # else:
-    #     log_ir["deviceId"]= "IR"
-    #     log_ir["logValue"]= 1
-    #     log_ir["deviceType"]= "ir"
-    #     log_ir["valuePrefix"]= "INTRUDER DETECTION"
-    #     log_ir["departmentId"]= "PLANT"
-    #     log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
+    if GPIO.input(17)==False:
+        log_ir["deviceId"]= "IR"
+        log_ir["logValue"]= 0
+        log_ir["deviceType"]= "ir"
+        log_ir["valuePrefix"]= "NO INTRUDER DETECTION"
+        log_ir["departmentId"]= "PLANT"
+        log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
+    else:
+        log_ir["deviceId"]= "IR"
+        log_ir["logValue"]= 1
+        log_ir["deviceType"]= "ir"
+        log_ir["valuePrefix"]= "INTRUDER DETECTION"
+        log_ir["departmentId"]= "PLANT"
+        log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
 
     # print result2
     if GPIO.input(27)==True:
@@ -76,30 +76,30 @@ while True:
         log_gas["valuePrefix"]= "GAS DETECTED"
         log_gas["departmentId"]= "PLANT"
         log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
-    # print result3
-    # if result3==True:
-    #     log_flame["deviceId"]= "FLAME"
-    #     log_flame["logValue"]= 0
-    #     log_flame["deviceType"]= "flame"
-    #     log_flame["valuePrefix"]= "FLAME NOT DETECTED"
-    #     log_flame["departmentId"]= "PLANT"
-    #     log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
-    # else:
-    #     log_flame["deviceId"]= "FLAME"
-    #     log_flame["logValue"]= 1
-    #     log_flame["deviceType"]= "flame"
-    #     log_flame["valuePrefix"]= "FLAME DETECTED"
-    #     log_flame["departmentId"]= "PLANT"
-    #     log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
+
+    if GPIO.input(22)==True:
+        log_flame["deviceId"]= "FLAME"
+        log_flame["logValue"]= 0
+        log_flame["deviceType"]= "flame"
+        log_flame["valuePrefix"]= "FLAME NOT DETECTED"
+        log_flame["departmentId"]= "PLANT"
+        log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
+    else:
+        log_flame["deviceId"]= "FLAME"
+        log_flame["logValue"]= 1
+        log_flame["deviceType"]= "flame"
+        log_flame["valuePrefix"]= "FLAME DETECTED"
+        log_flame["departmentId"]= "PLANT"
+        log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
 
     url="http://iotserver.codeofgyan.com/logs"
     # url="http://192.168.137.166:8080/logs"
 
     # r1 = requests.post(url, data=log_temp)
     # r2 = requests.post(url, data=log_humi)
-    # r3 = requests.post(url, data=log_ir)
+    r3 = requests.post(url, data=log_ir)
     r4 = requests.post(url, data=log_gas)
-    # r5 = requests.post(url, data=log_flame)
+    r5 = requests.post(url, data=log_flame)
 
     # if r1.status_code != 200:
     #     print "Error:", r1.status_code
@@ -107,14 +107,14 @@ while True:
     # if r2.status_code != 200:
     #     print "Error:", r2.status_code
 
-    # if r3.status_code != 200:
-    #     print "Error:", r3.status_code
+    if r3.status_code != 200:
+        print "Error:", r3.status_code
 
     if r4.status_code != 200:
         print "Error:", r3.status_code
     #
-    # if r5.status_code != 200:
-    #     print "Error:", r3.status_code
+    if r5.status_code != 200:
+        print "Error:", r3.status_code
 
     #insert temperature data into sql
     # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"TEMPSENSE", result.temperature, "temperature", "degree", "PLANT", "b8:27:eb:4a:65:3c"))
