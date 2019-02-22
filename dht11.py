@@ -56,7 +56,9 @@ class DHT11:
         bits = self.__calculate_bits(pull_up_lengths)
 
         # we have the bits, calculate bytes
+        print bits
         the_bytes = self.__bits_to_bytes(bits)
+        print the_bytes
 
         # calculate checksum and check
         checksum = self.__calculate_checksum(the_bytes)
