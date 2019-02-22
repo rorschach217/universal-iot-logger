@@ -62,7 +62,7 @@ while True:
     #     log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
 
     # print result2
-    if GPIO.input(27)==False:
+    if GPIO.input(27)==True:
         log_gas["deviceId"]= "GAS"
         log_gas["logValue"]= 0
         log_gas["deviceType"]= "gas"
@@ -142,6 +142,6 @@ while True:
 
     # conn.commit()
 
-    time.sleep(1)
+    time.sleep(3)
 
     # conn.close()
