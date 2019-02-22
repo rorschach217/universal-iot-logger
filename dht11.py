@@ -16,7 +16,6 @@ class DHT11Result:
     def __init__(self, error_code, temperature, humidity):
         self.error_code = error_code
         self.temperature = temperature
-        print humidity
         self.humidity = humidity
 
     def is_valid(self):
@@ -57,9 +56,7 @@ class DHT11:
         bits = self.__calculate_bits(pull_up_lengths)
 
         # we have the bits, calculate bytes
-        print bits
         the_bytes = self.__bits_to_bytes(bits)
-        print the_bytes
 
         # calculate checksum and check
         checksum = self.__calculate_checksum(the_bytes)

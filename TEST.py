@@ -31,7 +31,7 @@ while True:
         log_ir=dict()
         log_gas=dict()
         log_flame=dict()
-        print result
+
         log_temp["deviceId"]= "TEMPSENSE"
         log_temp["logValue"]= result.temperature
         log_temp["deviceType"]= "temperature"
@@ -61,7 +61,6 @@ while True:
         log_ir["departmentId"]= "PLANT"
         log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
 
-    # print result2
     if GPIO.input(27)==True:
         log_gas["deviceId"]= "GAS"
         log_gas["logValue"]= 0
