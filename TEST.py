@@ -46,35 +46,36 @@ while True:
         log_humi["departmentId"]= "PLANT"
         log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
 
-    if GPIO.input(17)==True:
-        log_ir["deviceId"]= "IR"
-        log_ir["logValue"]= 0
-        log_ir["deviceType"]= "ir"
-        log_ir["valuePrefix"]= "NO INTRUDER DETECTION"
-        log_ir["departmentId"]= "PLANT"
-        log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
-    else:
-        log_ir["deviceId"]= "IR"
-        log_ir["logValue"]= 1
-        log_ir["deviceType"]= "ir"
-        log_ir["valuePrefix"]= "INTRUDER DETECTION"
-        log_ir["departmentId"]= "PLANT"
-        log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
-    # print result2
-    # if result2==False:
-    #     log_gas["deviceId"]= "GAS"
-    #     log_gas["logValue"]= 0
-    #     log_gas["deviceType"]= "gas"
-    #     log_gas["valuePrefix"]= "NO GAS DETECTION"
-    #     log_gas["departmentId"]= "PLANT"
-    #     log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
+    # if GPIO.input(17)==False:
+    #     log_ir["deviceId"]= "IR"
+    #     log_ir["logValue"]= 0
+    #     log_ir["deviceType"]= "ir"
+    #     log_ir["valuePrefix"]= "NO INTRUDER DETECTION"
+    #     log_ir["departmentId"]= "PLANT"
+    #     log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
     # else:
-    #     log_gas["deviceId"]= "GAS"
-    #     log_gas["logValue"]= 1
-    #     log_gas["deviceType"]= "gas"
-    #     log_gas["valuePrefix"]= "GAS DETECTED"
-    #     log_gas["departmentId"]= "PLANT"
-    #     log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
+    #     log_ir["deviceId"]= "IR"
+    #     log_ir["logValue"]= 1
+    #     log_ir["deviceType"]= "ir"
+    #     log_ir["valuePrefix"]= "INTRUDER DETECTION"
+    #     log_ir["departmentId"]= "PLANT"
+    #     log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
+
+    # print result2
+    if GPIO.input(27)==False:
+        log_gas["deviceId"]= "GAS"
+        log_gas["logValue"]= 0
+        log_gas["deviceType"]= "gas"
+        log_gas["valuePrefix"]= "NO GAS DETECTION"
+        log_gas["departmentId"]= "PLANT"
+        log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
+    else:
+        log_gas["deviceId"]= "GAS"
+        log_gas["logValue"]= 1
+        log_gas["deviceType"]= "gas"
+        log_gas["valuePrefix"]= "GAS DETECTED"
+        log_gas["departmentId"]= "PLANT"
+        log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
     # print result3
     # if result3==True:
     #     log_flame["deviceId"]= "FLAME"
@@ -96,8 +97,8 @@ while True:
 
     # r1 = requests.post(url, data=log_temp)
     # r2 = requests.post(url, data=log_humi)
-    r3 = requests.post(url, data=log_ir)
-    # r4 = requests.post(url, data=log_gas)
+    # r3 = requests.post(url, data=log_ir)
+    r4 = requests.post(url, data=log_gas)
     # r5 = requests.post(url, data=log_flame)
 
     # if r1.status_code != 200:
