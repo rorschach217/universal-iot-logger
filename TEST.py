@@ -14,8 +14,8 @@ GPIO.setup(27, GPIO.IN)
 GPIO.setup(22, GPIO.IN)
 
 # connecting with database
-conn = sqlite3.connect('IOT_LOCAL_LOGS')
-cur = conn.cursor()	# Pointer Creation
+# conn = sqlite3.connect('IOT_LOCAL_LOGS')
+# cur = conn.cursor()	# Pointer Creation
 
 # read data using pin 4
 instance = dht11.DHT11(pin=4)
