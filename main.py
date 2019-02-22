@@ -16,9 +16,9 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
-GPIO.setup(17, GPIO.IN)
-GPIO.setup(27, GPIO.IN)
-GPIO.setup(22, GPIO.IN)
+# GPIO.setup(17, GPIO.IN)
+# GPIO.setup(27, GPIO.IN)
+# GPIO.setup(22, GPIO.IN)
 
 while True:
     dht11sensor.readSensorData(None)

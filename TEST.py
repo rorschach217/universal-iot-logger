@@ -87,7 +87,7 @@ while True:
             log_flame["valuePrefix"]= "FLAME NOT DETECTED"
             log_flame["departmentId"]= "PLANT"
             log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
-        else:                #When output from motion sensor is HIGH
+        else:
             log_flame["deviceId"]= "FLAME"
             log_flame["logValue"]= result3
             log_flame["deviceType"]= "flame"
