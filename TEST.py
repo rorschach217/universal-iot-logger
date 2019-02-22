@@ -25,13 +25,12 @@ result3 = GPIO.input(22)
 
 while True:
     result = instance.read()
-
-	if result.is_valid():
+    if result.is_valid():
         log_temp=dict()
         log_humi=dict()
-		log_ir=dict()
-		log_gas=dict()
-		log_flame=dict()
+        log_ir=dict()
+        log_gas=dict()
+        log_flame=dict()
 
         log_temp["deviceId"]= "TEMPSENSE"
         log_temp["logValue"]= result.temperature
@@ -47,22 +46,22 @@ while True:
         log_humi["departmentId"]= "PLANT"
         log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
 
-		if result1==False:	#When output from motion sensor is LOW
-			log_ir["deviceId"]= "IR"
-        	log_ir["logValue"]= result1
-        	log_ir["deviceType"]= "ir"
-        	log_ir["valuePrefix"]= "NO INTRUDER DETECTION"
-        	log_ir["departmentId"]= "PLANT"
-        	log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
-		else:                #When output from motion sensor is HIGH
-			log_ir["deviceId"]= "IR"
-        	log_ir["logValue"]= result1
-        	log_ir["deviceType"]= "ir"
-        	log_ir["valuePrefix"]= "INTRUDER DETECTION"
-        	log_ir["departmentId"]= "PLANT"
-        	log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
+        if result1==False:	#When output from motion sensor is LOW
+            log_ir["deviceId"]= "IR"
+            log_ir["logValue"]= result1
+            log_ir["deviceType"]= "ir"
+            log_ir["valuePrefix"]= "NO INTRUDER DETECTION"
+            log_ir["departmentId"]= "PLANT"
+            log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
+        else:                #When output from motion sensor is HIGH
+            log_ir["deviceId"]= "IR"
+            log_ir["logValue"]= result1
+            log_ir["deviceType"]= "ir"
+            log_ir["valuePrefix"]= "INTRUDER DETECTION"
+            log_ir["departmentId"]= "PLANT"
+            log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
 
-		if result2==False:    #When output from motion sensor is LOW
+        if result2==False:    #When output from motion sensor is LOW
             log_gas["deviceId"]= "GAS"
             log_gas["logValue"]= result2
             log_gas["deviceType"]= "gas"
@@ -77,7 +76,7 @@ while True:
             log_gas["departmentId"]= "PLANT"
             log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
 
-		if result3==False:    #When output from motion sensor is LOW
+        if result3==False:    #When output from motion sensor is LOW
             log_flame["deviceId"]= "FLAME"
             log_flame["logValue"]= result3
             log_flame["deviceType"]= "flame"
@@ -92,7 +91,7 @@ while True:
             log_flame["departmentId"]= "PLANT"
             log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
 
-       	url="http://iotserver.codeofgyan.com/logs"
+        url="http://iotserver.codeofgyan.com/logs"
         # url="http://192.168.137.166:8080/logs"
 
         r1 = requests.post(url, data=log_temp)
@@ -102,48 +101,48 @@ while True:
         r5 = requests.post(url, data=log_flame)
 
         if r1.status_code != 200:
-      		print "Error:", r1.status_code
+            print "Error:", r1.status_code
 
         if r2.status_code != 200:
-	        print "Error:", r2.status_code
+            print "Error:", r2.status_code
 
-		if r3.status_code != 200:
-           	print "Error:", r3.status_code
+        if r3.status_code != 200:
+            print "Error:", r3.status_code
 
-		if r4.status_code != 200:
-           	print "Error:", r3.status_code
+        if r4.status_code != 200:
+            print "Error:", r3.status_code
 
-		if r5.status_code != 200:
-           	print "Error:", r3.status_code
+        if r5.status_code != 200:
+            print "Error:", r3.status_code
 
-		ts = time.time()
+        ts = time.time()
 
-		#insert temperature data into sql
+        #insert temperature data into sql
         # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"TEMPSENSE", result.temperature, "temperature", "degree", "PLANT", "b8:27:eb:4a:65:3c"))
         #
         # #insert humidity data into sql
         # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"HUMISENSE", result.humidity, "humidity", "%", "PLANT", "b8:27:eb:4a:65:3c"))
         #
-		# #insert nir data into sql
-     	# cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "NO INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
+        # #insert nir data into sql
+        # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "NO INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
         #
-		# #insert ir data into sql
+        # #insert ir data into sql
         # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"IR", result1, "ir", "INTRUDER DETECTION", "PLANT", "b8:27:eb:4a:65:3c"))
         #
-		# #insert ng data into sql
-		# cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"AIR QUALITY", result2, "GAS SENSOR", "PURE", "PLANT", "b8:27:eb:4a:65:3c"))
+        # #insert ng data into sql
+        # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"AIR QUALITY", result2, "GAS SENSOR", "PURE", "PLANT", "b8:27:eb:4a:65:3c"))
         #
-		# #insert g data into sql
-		# cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"AIR QUALITY", result2, "GAS SENSOR", "IMPURE", "PLANT", "b8:27:eb:4a:65:3c"))
+        # #insert g data into sql
+        # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"AIR QUALITY", result2, "GAS SENSOR", "IMPURE", "PLANT", "b8:27:eb:4a:65:3c"))
         #
-		# #insert f data into sql
-		# cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "FLAME SENSOR", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
+        # #insert f data into sql
+        # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "FLAME SENSOR", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
         #
-		# #insert ng data into sql
-		# cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "FLAME SENSOR", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
+        # #insert ng data into sql
+        # cur.execute("INSERT INTO LOCAL_LOGS (timestamp, deviceId, logValue, deviceType, valuePrefix, departmentId, createdBy) VALUES (?, ?, ?, ?, ?, ?, ?)", (ts,"FLAME", result3, "FLAME SENSOR", "FLAME NOT DETECTED", "PLANT", "b8:27:eb:4a:65:3c"))
 
-		conn.commit()
+        # conn.commit()
 
         time.sleep(1)
 
-conn.close()
+        # conn.close()

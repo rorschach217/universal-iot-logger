@@ -1,3 +1,4 @@
+import RPi.GPIO as GPIO
 import dht11
 import sys, os
 
