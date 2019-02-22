@@ -31,7 +31,7 @@ while True:
         log_ir=dict()
         log_gas=dict()
         log_flame=dict()
-
+        print result
         log_temp["deviceId"]= "TEMPSENSE"
         log_temp["logValue"]= result.temperature
         log_temp["deviceType"]= "temperature"

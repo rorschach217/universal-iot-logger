@@ -16,6 +16,7 @@ class DHT11Result:
     def __init__(self, error_code, temperature, humidity):
         self.error_code = error_code
         self.temperature = temperature
+        print humidity
         self.humidity = humidity
 
     def is_valid(self):
@@ -66,7 +67,7 @@ class DHT11:
             return DHT11Result(DHT11Result.ERR_CRC, 0, 0)
 
         # ok, we have valid data, return it
-        return DHT11Result(DHT11Result.ERR_NO_ERROR, the_bytes[2], the_bytes[0])
+        return DHT11Result(DHT11Result.ERR_NO_ERROR, the_bytes[2], the_bytes[4])
 
     def __send_and_sleep(self, output, sleep):
         RPi.GPIO.output(self.__pin, output)
