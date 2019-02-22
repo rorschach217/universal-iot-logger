@@ -61,7 +61,7 @@ while True:
             log_ir["departmentId"]= "PLANT"
             log_ir["createdBy"]= "b8:27:eb:4a:65:3c"
 
-        if result2==False:    #When output from motion sensor is LOW
+        if result2==True:    #When output from motion sensor is LOW
             log_gas["deviceId"]= "GAS"
             log_gas["logValue"]= result2
             log_gas["deviceType"]= "gas"
@@ -76,7 +76,7 @@ while True:
             log_gas["departmentId"]= "PLANT"
             log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
 
-        if result3==False:    #When output from motion sensor is LOW
+        if result3==True:    #When output from motion sensor is LOW
             log_flame["deviceId"]= "FLAME"
             log_flame["logValue"]= result3
             log_flame["deviceType"]= "flame"
