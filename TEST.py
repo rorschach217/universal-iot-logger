@@ -63,14 +63,14 @@ while True:
 
         if result2==True:    #When output from motion sensor is LOW
             log_gas["deviceId"]= "GAS"
-            log_gas["logValue"]= result2
+            log_gas["logValue"]= 0
             log_gas["deviceType"]= "gas"
             log_gas["valuePrefix"]= "NO GAS DETECTION"
             log_gas["departmentId"]= "PLANT"
             log_gas["createdBy"]= "b8:27:eb:4a:65:3c"
         else:                #When output from motion sensor is HIGH
             log_gas["deviceId"]= "GAS"
-            log_gas["logValue"]= result2
+            log_gas["logValue"]= 1
             log_gas["deviceType"]= "gas"
             log_gas["valuePrefix"]= "GAS DETECTED"
             log_gas["departmentId"]= "PLANT"
@@ -78,14 +78,14 @@ while True:
 
         if result3==True:    #When output from motion sensor is LOW
             log_flame["deviceId"]= "FLAME"
-            log_flame["logValue"]= result3
+            log_flame["logValue"]= 0
             log_flame["deviceType"]= "flame"
             log_flame["valuePrefix"]= "FLAME NOT DETECTED"
             log_flame["departmentId"]= "PLANT"
             log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
         else:
             log_flame["deviceId"]= "FLAME"
-            log_flame["logValue"]= result3
+            log_flame["logValue"]= 1
             log_flame["deviceType"]= "flame"
             log_flame["valuePrefix"]= "FLAME DETECTED"
             log_flame["departmentId"]= "PLANT"
