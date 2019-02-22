@@ -25,4 +25,4 @@ while True:
     flamesensor.readSensorData(None)
     gassensor.readSensorData(None)
     irsensor.readSensorData(None)
-    time.sleep(10)
+    time.sleep(1)
