@@ -1,11 +1,11 @@
 import sys, os
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 
 import api as api
 
-GPIO.setmode(GPIO.BCM)
+# GPIO.setmode(GPIO.BCM)
 GPIO.setup(22, GPIO.IN)
 result=GPIO.input(22)
 
