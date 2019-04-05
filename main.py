@@ -18,33 +18,33 @@ GPIO.setup(22, GPIO.IN)
 # cur = conn.cursor()	# Pointer Creation
 
 # read data using pin 4
-instance = dht11.DHT11(pin=4)
+# instance = dht11.DHT11(pin=4)
 result1 = GPIO.input(17)
 result2 = GPIO.input(27)
 result3 = GPIO.input(22)
 
 while True:
-    result = instance.read()
-    if result.is_valid():
-        log_temp=dict()
-        log_humi=dict()
-        log_ir=dict()
-        log_gas=dict()
-        log_flame=dict()
-
-        log_temp["deviceId"]= "TEMPSENSE"
-        log_temp["logValue"]= result.temperature
-        log_temp["deviceType"]= "temperature"
-        log_temp["valuePrefix"]= "degree"
-        log_temp["departmentId"]= "PLANT"
-        log_temp["createdBy"]= "b8:27:eb:4a:65:3c"
-
-        log_humi["deviceId"]= "HUMISENSE"
-        log_humi["logValue"]= result.humidity
-        log_humi["deviceType"]= "humidity"
-        log_humi["valuePrefix"]= "%"
-        log_humi["departmentId"]= "PLANT"
-        log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
+    # result = instance.read()
+    # if result.is_valid():
+    #     log_temp=dict()
+    #     log_humi=dict()
+    #     log_ir=dict()
+    #     log_gas=dict()
+    #     log_flame=dict()
+    #
+    #     log_temp["deviceId"]= "TEMPSENSE"
+    #     log_temp["logValue"]= result.temperature
+    #     log_temp["deviceType"]= "temperature"
+    #     log_temp["valuePrefix"]= "degree"
+    #     log_temp["departmentId"]= "PLANT"
+    #     log_temp["createdBy"]= "b8:27:eb:4a:65:3c"
+    #
+    #     log_humi["deviceId"]= "HUMISENSE"
+    #     log_humi["logValue"]= result.humidity
+    #     log_humi["deviceType"]= "humidity"
+    #     log_humi["valuePrefix"]= "%"
+    #     log_humi["departmentId"]= "PLANT"
+    #     log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
 
     if GPIO.input(17)==False:
         log_ir["deviceId"]= "IR"
