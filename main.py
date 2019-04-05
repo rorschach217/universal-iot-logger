@@ -24,13 +24,13 @@ result2 = GPIO.input(27)
 result3 = GPIO.input(22)
 
 while True:
+    log_ir=dict()
+    log_gas=dict()
+    log_flame=dict()
     # result = instance.read()
     # if result.is_valid():
     #     log_temp=dict()
     #     log_humi=dict()
-    #     log_ir=dict()
-    #     log_gas=dict()
-    #     log_flame=dict()
     #
     #     log_temp["deviceId"]= "TEMPSENSE"
     #     log_temp["logValue"]= result.temperature
