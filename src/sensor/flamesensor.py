@@ -9,12 +9,12 @@ GPIO.cleanup()
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(22, GPIO.IN)
-# result=GPIO.input(22)
+result=GPIO.input(22)
 
 def readSensorData(parameter):
     log_flame=dict()
     print(result)
-    if GPIO.input(22).is_valid():
+    if result.is_valid():
     	if result==False: #When output from motion sensor is LOW
 	        log_flame["deviceId"]= "FLAME"
         	log_flame["logValue"]= result
