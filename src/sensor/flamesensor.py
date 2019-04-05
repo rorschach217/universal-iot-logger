@@ -1,19 +1,15 @@
 import sys, os
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 
 import api as api
 
-# GPIO.cleanup()
-# GPIO.setwarnings(False)
-# GPIO.setmode(GPIO.BCM)
-# GPIO.setup(22, GPIO.IN)
-# result=GPIO.input(22)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(22, GPIO.IN)
+result=GPIO.input(22)
 
-def readSensorData(GPIO):
-    GPIO.setup(22, GPIO.IN)
-    result=GPIO.input(22)
+def readSensorData(parameter):
     log_flame=dict()
     if result.is_valid():
     	if result==False: #When output from motion sensor is LOW

@@ -18,33 +18,33 @@ GPIO.setup(22, GPIO.IN)
 # cur = conn.cursor()	# Pointer Creation
 
 # read data using pin 4
-# instance = dht11.DHT11(pin=4)
+instance = dht11.DHT11(pin=4)
 result1 = GPIO.input(17)
 result2 = GPIO.input(27)
 result3 = GPIO.input(22)
 
 while True:
+    result = instance.read()
+
+    log_temp=dict()
+    log_humi=dict()
     log_ir=dict()
     log_gas=dict()
     log_flame=dict()
-    # result = instance.read()
-    # if result.is_valid():
-    #     log_temp=dict()
-    #     log_humi=dict()
-    #
-    #     log_temp["deviceId"]= "TEMPSENSE"
-    #     log_temp["logValue"]= result.temperature
-    #     log_temp["deviceType"]= "temperature"
-    #     log_temp["valuePrefix"]= "degree"
-    #     log_temp["departmentId"]= "PLANT"
-    #     log_temp["createdBy"]= "b8:27:eb:4a:65:3c"
-    #
-    #     log_humi["deviceId"]= "HUMISENSE"
-    #     log_humi["logValue"]= result.humidity
-    #     log_humi["deviceType"]= "humidity"
-    #     log_humi["valuePrefix"]= "%"
-    #     log_humi["departmentId"]= "PLANT"
-    #     log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
+    if result.is_valid():
+        log_temp["deviceId"]= "TEMPSENSE"
+        log_temp["logValue"]= result.temperature
+        log_temp["deviceType"]= "temperature"
+        log_temp["valuePrefix"]= "degree"
+        log_temp["departmentId"]= "PLANT"
+        log_temp["createdBy"]= "b8:27:eb:4a:65:3c"
+
+        log_humi["deviceId"]= "HUMISENSE"
+        log_humi["logValue"]= result.humidity
+        log_humi["deviceType"]= "humidity"
+        log_humi["valuePrefix"]= "%"
+        log_humi["departmentId"]= "PLANT"
+        log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
 
     if GPIO.input(17)==False:
         log_ir["deviceId"]= "IR"
@@ -94,17 +94,17 @@ while True:
     url="http://iotserver.codeofgyan.com/logs"
     # url="http://192.168.137.166:8080/logs"
 
-    # r1 = requests.post(url, data=log_temp)
-    # r2 = requests.post(url, data=log_humi)
+    r1 = requests.post(url, data=log_temp)
+    r2 = requests.post(url, data=log_humi)
     r3 = requests.post(url, data=log_ir)
     r4 = requests.post(url, data=log_gas)
     r5 = requests.post(url, data=log_flame)
 
-    # if r1.status_code != 200:
-    #     print "Error:", r1.status_code
-    #
-    # if r2.status_code != 200:
-    #     print "Error:", r2.status_code
+    if r1.status_code != 200:
+        print "Error:", r1.status_code
+
+    if r2.status_code != 200:
+        print "Error:", r2.status_code
 
     if r3.status_code != 200:
         print "Error:", r3.status_code
