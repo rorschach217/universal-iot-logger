@@ -21,8 +21,8 @@ GPIO.cleanup()
 # GPIO.setup(22, GPIO.IN)
 
 while True:
-    dht11sensor.readSensorData(None)
     flamesensor.readSensorData(None)
     gassensor.readSensorData(None)
     irsensor.readSensorData(None)
+    dht11sensor.readSensorData(None)    
     time.sleep(1)
