@@ -21,8 +21,8 @@ GPIO.setmode(GPIO.BCM)
 # GPIO.setup(22, GPIO.IN)
 
 while True:
-    flamesensor.readSensorData(None)
-    gassensor.readSensorData(None)
-    irsensor.readSensorData(None)
-    dht11sensor.readSensorData(None)
-    time.sleep(1)
+    flamesensor.readSensorData(GPIO)
+    #gassensor.readSensorData(None)
+    #irsensor.readSensorData(None)
+    #dht11sensor.readSensorData(None)
+    time.sleep(5)
