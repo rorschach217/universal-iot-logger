@@ -26,5 +26,5 @@ while True:
     flamesensor.readSensorData(GPIO.input(22))
     gassensor.readSensorData(GPIO.input(27))
     irsensor.readSensorData(GPIO.input(17))
-    #dht11sensor.readSensorData(dht11)
+    dht11sensor.readSensorData(dht11.read())
     time.sleep(5)
