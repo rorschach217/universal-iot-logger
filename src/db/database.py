@@ -19,7 +19,7 @@ def insertDataIntoDatabase(data):
     connection.commit()
     return True
 
-def checkDataExistInDatabase(data):
+def checkDataExistInDatabase():
     cursor.execute("SELECT * FROM logs")
     for row in cursor:
         print row

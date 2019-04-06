@@ -12,7 +12,7 @@ errorLogURL = constant.baseurl + "/error/logs"
 sensorURL = constant.baseurl + "/sensors"
 
 def postDataToServer(data):
-    request = requests.post(logURL, data=data)
+    request = requests.post(logURL, data={})
     if request.status_code != 200:
         print "Error:", request.status_code
         database.insertDataIntoDatabase(data)
