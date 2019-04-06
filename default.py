@@ -19,8 +19,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
-if not (database.checkTableExist()):
-    database.checkTableExist()
+database.createTable()
 
 while True:
     sensors = api.readDataFromServer()

@@ -4,15 +4,8 @@ connection = sqlite3.connect("locallogs")
 cursor = connection.cursor()
 
 def createTable():
-    cursor.execute("CREATE TABLE logs (timestamp TEXT, deviceId TEXT, logValue TEXT, deviceType TEXT, valuePrefix TEXT, departmentId TEXT, createdBy TEXT)")
+    cursor.execute("CREATE TABLE if not exists logs (timestamp TEXT, deviceId TEXT, logValue TEXT, deviceType TEXT, valuePrefix TEXT, departmentId TEXT, createdBy TEXT)")
     connection.commit()
-    return True
-
-def checkTableExist():
-    cursor.execute("SHOW TABLES LIKE 'logs'")
-    table = cursor.fetchone()
-    if (table):
-        return False
     return True
 
 def insertDataIntoDatabase(data):
