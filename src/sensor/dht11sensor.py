@@ -4,7 +4,7 @@ sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 
 import api as api
 
-def temperatureData(result):
+def readTemperatureSensorData(result):
     log_temp=dict()
     if result.is_valid():
         log_temp["deviceId"]= "TEMPSENSE"
@@ -16,7 +16,7 @@ def temperatureData(result):
     if log_temp:
         api.postDataToServer(log_temp)
 
-def humidityData(result):
+def readhumiditySensorData(result):
     log_humi=dict()
     if result.is_valid():
         log_humi["deviceId"]= "HUMISENSE"
@@ -27,8 +27,3 @@ def humidityData(result):
         log_humi["createdBy"]= "b8:27:eb:4a:65:3c"
     if log_humi:
         api.postDataToServer(log_humi)
-
-def readSensorData(result):
-    temperatureData(result)
-    humidityData(result)
-    return

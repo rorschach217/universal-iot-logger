@@ -16,7 +16,6 @@ def postDataToServer(data):
 
 def readDataFromServer():
     request = requests.get(sensorURL)
-    print request
     if request.status_code != 200:
         print "Error:", request.status_code
         return request

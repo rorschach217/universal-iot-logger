@@ -14,21 +14,34 @@ import flamesensor as flamesensor
 import gassensor as gassensor
 import irsensor as irsensor
 
-GPIO.cleanup()
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-
-dht11 = dht11.DHT11(pin=4)
-GPIO.setup(17, GPIO.IN)
-GPIO.setup(27, GPIO.IN)
-GPIO.setup(22, GPIO.IN)
+GPIO.cleanup()
 
 while True:
     sensors = api.readDataFromServer()
     for sensor in sensors:
-        print sensor
+        print sensor.pin
+        print type(sensor.pin)
+        if sensor.sensor == "temperature" and sensor.isEnabled == True:
+            dht11 = dht11.DHT11(pin=sensor.pin)
+            dht11sensor.readTemperatureSensorData(dht11.read())
+        if sensor.sensor == "humidity" and sensor.isEnabled == True:
+            dht11 = dht11.DHT11(pin=sensor.pin)
+            dht11sensor.readhumiditySensorData(dht11.read())
+        if sensor.sensor == "infrared" and sensor.isEnabled == True:
+            GPIO.setup(sensor.pin, GPIO.IN)
+            irsensor.readSensorData(GPIO.input(sensor.pin))
+        if sensor.sensor == "gas" and sensor.isEnabled == True:
+            GPIO.setup(sensor.pin, GPIO.IN)
+            gassensor.readSensorData(GPIO.input(sensor.pin))
+        if sensor.sensor == "Flame" and sensor.isEnabled == True:
+            GPIO.setup(sensor.pin, GPIO.IN)
+            flamesensor.readSensorData(GPIO.input(sensor.pin))
     # flamesensor.readSensorData(GPIO.input(22))
     # gassensor.readSensorData(GPIO.input(27))
     # irsensor.readSensorData(GPIO.input(17))
-    dht11sensor.readSensorData(dht11.read())
+    # dht11sensor.readTemperatureSensorData(dht11.read())
+    # dht11sensor.readhumiditySensorData(dht11.read())
+
     time.sleep(5)
