@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import dht11
-import time
-import sys, os
+import time, sys, os, json
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/dht11sensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/flamesensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/gassensor.py')))
@@ -21,6 +20,9 @@ GPIO.cleanup()
 while True:
     sensors = api.readDataFromServer()
     for sensor in sensors:
+        print type(sensor)
+        newSensorDictionary = json.loads(sensor);
+        print newSensorDictionary
         print sensor.pin
         print type(sensor.pin)
         if sensor.sensor == "temperature" and sensor.isEnabled == True:
