@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import dht11
 import time
 import sys, os
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/dht11sensor.py')))
@@ -16,13 +17,14 @@ GPIO.cleanup()
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-# GPIO.setup(17, GPIO.IN)
-# GPIO.setup(27, GPIO.IN)
-# GPIO.setup(22, GPIO.IN)
+dht11 = dht11.DHT11(pin=4)
+GPIO.setup(17, GPIO.IN)
+GPIO.setup(27, GPIO.IN)
+GPIO.setup(22, GPIO.IN)
 
 while True:
-    flamesensor.readSensorData(GPIO)
-    #gassensor.readSensorData(None)
-    #irsensor.readSensorData(None)
-    #dht11sensor.readSensorData(None)
+    flamesensor.readSensorData(GPIO.input(22))
+    #gassensor.readSensorData(GPIO.input(27))
+    #irsensor.readSensorData(GPIO.input(17))
+    #dht11sensor.readSensorData(dht11)
     time.sleep(5)
