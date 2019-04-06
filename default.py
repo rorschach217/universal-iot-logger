@@ -23,11 +23,11 @@ while True:
         print sensor["pin"]
         print type(sensor["pin"])
         if sensor["sensor"] == "temperature" and sensor["isEnabled"] == True:
-            dht11 = dht11.DHT11(pin=sensor["pin"])
-            dht11sensor.readTemperatureSensorData(dht11.read())
+            dht11Object = dht11.DHT11(pin=sensor["pin"])
+            dht11sensor.readTemperatureSensorData(dht11Object.read())
         if sensor["sensor"] == "humidity" and sensor["isEnabled"] == True:
-            dht11 = dht11.DHT11(pin=sensor["pin"])
-            dht11sensor.readhumiditySensorData(dht11.read())
+            dht11Object = dht11.DHT11(pin=sensor["pin"])
+            dht11sensor.readhumiditySensorData(dht11Object.read())
         if sensor["sensor"] == "infrared" and sensor["isEnabled"] == True:
             GPIO.setup(sensor["pin"], GPIO.IN)
             irsensor.readSensorData(GPIO.input(sensor["pin"]))
