@@ -20,9 +20,8 @@ GPIO.cleanup()
 while True:
     sensors = api.readDataFromServer()
     for sensor in sensors:
-        print type(sensor)
-        newSensorDictionary = json.loads(sensor);
-        print newSensorDictionary
+        print type(sensor)        
+        print sensor
         print sensor.pin
         print type(sensor.pin)
         if sensor.sensor == "temperature" and sensor.isEnabled == True:
