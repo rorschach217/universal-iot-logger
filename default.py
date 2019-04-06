@@ -24,7 +24,7 @@ GPIO.setup(27, GPIO.IN)
 GPIO.setup(22, GPIO.IN)
 
 while True:
-    sensors = readDataFromServer()
+    sensors = api.readDataFromServer()
     print sensors
     flamesensor.readSensorData(GPIO.input(22))
     gassensor.readSensorData(GPIO.input(27))
