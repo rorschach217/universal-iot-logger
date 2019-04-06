@@ -38,3 +38,10 @@ def postErrorToServer(message, sensor, deviceId, mac):
     if request.status_code != 200:
         print "Error:", request.status_code
     return
+
+def postLocalDataToServer(data):
+    request = requests.post(logURL, data=data)
+    if request.status_code != 200:
+        print "Error:", request.status_code
+        return False
+    return True

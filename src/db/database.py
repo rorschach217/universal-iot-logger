@@ -1,5 +1,9 @@
-import sqlite3
-import time;
+import sqlite3, time, sys, os
+
+sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
+
+import api as api
+
 connection = sqlite3.connect("locallogs")
 cursor = connection.cursor()
 
@@ -16,12 +20,15 @@ def insertDataIntoDatabase(data):
 def checkDataExistInDatabase():
     cursor.execute("SELECT * FROM logs")
     for row in cursor:
-        # log_temp["deviceId"]= "TEMPSENSE"
-        # log_temp["logValue"]= result.temperature
-        # log_temp["deviceType"]= "temperature"
-        # log_temp["valuePrefix"]= "degree"
-        # log_temp["departmentId"]= "PLANT"
-        # log_temp["createdBy"]= "b8:27:eb:4a:65:3c"
-        print row
-        print type(row)
-        print row[0]
+        data = dict()
+        data["timestamp"]= row[0]
+        data["deviceId"]= row[1]
+        data["logValue"]= row[2]
+        data["deviceType"]= row[3]
+        data["valuePrefix"]= row[4]
+        data["departmentId"]= row[5]
+        data["createdBy"]= row[6]
+        check = api.postLocalDataToServer(data)
+        if check:
+            cursor.execute("DELETE FROM logs WHERE timestamp = " + row[0])
+            connection.commit()
