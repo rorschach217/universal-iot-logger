@@ -6,13 +6,14 @@ sys.path.append(os.path.dirname(os.path.realpath('src/sensor/dht11sensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/flamesensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/gassensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/irsensor.py')))
+sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 
+import api as api
 import dht11sensor as dht11sensor
 import flamesensor as flamesensor
 import gassensor as gassensor
 import irsensor as irsensor
 
-# initialize GPIO
 GPIO.cleanup()
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -23,6 +24,8 @@ GPIO.setup(27, GPIO.IN)
 GPIO.setup(22, GPIO.IN)
 
 while True:
+    sensors = readDataFromServer()
+    print sensors
     flamesensor.readSensorData(GPIO.input(22))
     gassensor.readSensorData(GPIO.input(27))
     irsensor.readSensorData(GPIO.input(17))

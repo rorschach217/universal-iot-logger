@@ -5,12 +5,20 @@ sys.path.append(os.path.dirname(os.path.realpath('src/constants.py')))
 
 import constants as constant
 
-url = constant.baseurl + "/logs"
+logURL = constant.baseurl + "/logs"
+sensorURL = constant.baseurl + "/sensors"
 
 def postDataToServer(data):
-    print data
-    print type(data)
-    request = requests.post(url, data=data)
+    request = requests.post(logURL, data=data)
     if request.status_code != 200:
-            print "Error:", request.status_code
+        print "Error:", request.status_code
     return
+
+def readDataFromServer():
+    request = requests.get(sensorURL)
+    print request
+    if request.status_code != 200:
+        print "Error:", request.status_code
+        return request
+    else:
+        return request.json()
