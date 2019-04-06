@@ -16,5 +16,12 @@ def insertDataIntoDatabase(data):
 def checkDataExistInDatabase():
     cursor.execute("SELECT * FROM logs")
     for row in cursor:
+        # log_temp["deviceId"]= "TEMPSENSE"
+        # log_temp["logValue"]= result.temperature
+        # log_temp["deviceType"]= "temperature"
+        # log_temp["valuePrefix"]= "degree"
+        # log_temp["departmentId"]= "PLANT"
+        # log_temp["createdBy"]= "b8:27:eb:4a:65:3c"
         print row
         print type(row)
+        print row[0]
