@@ -20,7 +20,5 @@ def readSensorData(result):
         log_flame["valuePrefix"]= "FLAME NOT DETECTED"
         log_flame["departmentId"]= "PLANT"
         log_flame["createdBy"]= "b8:27:eb:4a:65:3c"
-
     api.postDataToServer(log_flame)
-
     return

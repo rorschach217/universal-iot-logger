@@ -24,7 +24,7 @@ GPIO.setup(22, GPIO.IN)
 
 while True:
     flamesensor.readSensorData(GPIO.input(22))
-    #gassensor.readSensorData(GPIO.input(27))
-    #irsensor.readSensorData(GPIO.input(17))
+    gassensor.readSensorData(GPIO.input(27))
+    irsensor.readSensorData(GPIO.input(17))
     #dht11sensor.readSensorData(dht11)
     time.sleep(5)
