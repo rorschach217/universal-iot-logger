@@ -9,8 +9,9 @@ def createTable():
     return True
 
 def checkTableExist():
-    tables = cursor.execute("SELECT * FROM information_schema.tables WHERE table_name = 'logs'")
-    if (len(tables)):
+    cursor.execute("SHOW TABLES LIKE 'logs'")
+    table = cursor.fetchone()
+    if (table):
         return False
     return True
 
