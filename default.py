@@ -20,9 +20,9 @@ GPIO.cleanup()
 while True:
     sensors = api.readDataFromServer()
     for sensor in sensors:
-        print type(sensor)        
+        print type(sensor)
         print sensor
-        print sensor.pin
+        print sensor["pin"]
         print type(sensor.pin)
         if sensor.sensor == "temperature" and sensor.isEnabled == True:
             dht11 = dht11.DHT11(pin=sensor.pin)
