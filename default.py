@@ -25,9 +25,10 @@ GPIO.setup(22, GPIO.IN)
 
 while True:
     sensors = api.readDataFromServer()
-    print sensors
-    flamesensor.readSensorData(GPIO.input(22))
-    gassensor.readSensorData(GPIO.input(27))
-    irsensor.readSensorData(GPIO.input(17))
-    dht11sensor.readSensorData(dht11.read())
+    for sensor in sensors:
+        print sensor
+    # flamesensor.readSensorData(GPIO.input(22))
+    # gassensor.readSensorData(GPIO.input(27))
+    # irsensor.readSensorData(GPIO.input(17))
+    # dht11sensor.readSensorData(dht11.read())
     time.sleep(5)
