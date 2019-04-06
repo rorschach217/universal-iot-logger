@@ -10,7 +10,7 @@ def createTable():
 
 def checkTableExist():
     cursor.execute("SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?", ("table", "logs"))
-    if (!cursor.moveToFirst()):
+    if (len(cursor)):
         return False
     return True
 
