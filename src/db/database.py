@@ -9,7 +9,7 @@ def createTable():
     return True
 
 def checkTableExist():
-    cursor.execute("SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?", new String[] {"table", "logs"})
+    cursor.execute("SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?", ("table", "logs"))
     if (!cursor.moveToFirst()):
         return False
     return True
