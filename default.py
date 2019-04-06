@@ -6,8 +6,10 @@ sys.path.append(os.path.dirname(os.path.realpath('src/sensor/flamesensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/gassensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/irsensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
+sys.path.append(os.path.dirname(os.path.realpath('src/db/databse.py')))
 
 import api as api
+import database as database
 import dht11sensor as dht11sensor
 import flamesensor as flamesensor
 import gassensor as gassensor
@@ -16,6 +18,9 @@ import irsensor as irsensor
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
+
+if not (database.checkTableExist()):
+    database.checkTableExist()
 
 while True:
     sensors = api.readDataFromServer()
