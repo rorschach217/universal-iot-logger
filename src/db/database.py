@@ -9,8 +9,8 @@ def createTable():
     return True
 
 def checkTableExist():
-    cursor.execute("SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?", ("table", "logs"))
-    if (len(cursor)):
+    tables = cursor.execute("SELECT * FROM information_schema.tables WHERE table_name = 'logs'")
+    if (len(tables)):
         return False
     return True
 
