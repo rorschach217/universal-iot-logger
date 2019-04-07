@@ -25,6 +25,9 @@ def readSensorData(result):
     return
 
 def distance(GPIO):
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(24, GPIO.IN)
+    
     GPIO.output(18, True)
 
     time.sleep(0.00001)
