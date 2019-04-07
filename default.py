@@ -5,6 +5,7 @@ sys.path.append(os.path.dirname(os.path.realpath('src/sensor/dht11sensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/flamesensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/gassensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/sensor/irsensor.py')))
+sys.path.append(os.path.dirname(os.path.realpath('src/sensor/pirsensor.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/api/api.py')))
 sys.path.append(os.path.dirname(os.path.realpath('src/db/databse.py')))
 
@@ -14,6 +15,7 @@ import dht11sensor as dht11sensor
 import flamesensor as flamesensor
 import gassensor as gassensor
 import irsensor as irsensor
+import pirsensor as pirsensor
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -39,4 +41,10 @@ while True:
         if sensor["sensor"] == "flame" and sensor["isEnabled"] == True:
             GPIO.setup(sensor["pin"], GPIO.IN)
             flamesensor.readSensorData(GPIO.input(sensor["pin"]))
+    GPIO.setup(23, GPIO.IN)
+    if GPIO.input(23):
+        GPIO.output(24, True)
+        time.sleep(1)
+        GPIO.output(24, False)
+    pirsensor.readSensorData(GPIO.input(23))
     time.sleep(5)
