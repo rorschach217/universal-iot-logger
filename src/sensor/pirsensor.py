@@ -23,3 +23,13 @@ def readSensorData(result):
     # api.postDataToServer(log_pir)
     print(log_pir);
     return
+
+
+# GPIO.setup(18, GPIO.IN)
+# GPIO.setup(23, GPIO.OUT)
+# print GPIO.input(18)
+# if GPIO.input(18):
+#     GPIO.output(23, True)
+#     time.sleep(1)
+#     GPIO.output(23, False)
+# pirsensor.readSensorData(GPIO.input(18))

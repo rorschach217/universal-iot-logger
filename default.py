@@ -43,15 +43,7 @@ while True:
         if sensor["sensor"] == "flame" and sensor["isEnabled"] == True:
             GPIO.setup(sensor["pin"], GPIO.IN)
             flamesensor.readSensorData(GPIO.input(sensor["pin"]))
-    dist = ultrasonicsensor.distance(GPIO)
-    print ("Measured Distance = %.1f cm" % dist)    
-
-    # GPIO.setup(18, GPIO.IN)
-    # GPIO.setup(23, GPIO.OUT)
-    # print GPIO.input(18)
-    # if GPIO.input(18):
-    #     GPIO.output(23, True)
-    #     time.sleep(1)
-    #     GPIO.output(23, False)
-    # pirsensor.readSensorData(GPIO.input(18))
+        if sensor["sensor"] == "ultrasonic" and sensor["isEnabled"] == True:
+            distance = ultrasonicsensor.distance(GPIO, sensor)
+            ultrasonicsensor.readSensorData(distance)
     time.sleep(5)
