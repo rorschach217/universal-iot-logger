@@ -41,10 +41,10 @@ while True:
         if sensor["sensor"] == "flame" and sensor["isEnabled"] == True:
             GPIO.setup(sensor["pin"], GPIO.IN)
             flamesensor.readSensorData(GPIO.input(sensor["pin"]))
-    GPIO.setup(23, GPIO.IN)
-    if GPIO.input(23):
-        GPIO.output(24, True)
+    GPIO.setup(18, GPIO.IN)
+    if GPIO.input(18):
+        GPIO.output(23, True)
         time.sleep(1)
-        GPIO.output(24, False)
-    pirsensor.readSensorData(GPIO.input(23))
+        GPIO.output(23, False)
+    pirsensor.readSensorData(GPIO.input(18))
     time.sleep(5)
