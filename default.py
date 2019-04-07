@@ -42,6 +42,7 @@ while True:
             GPIO.setup(sensor["pin"], GPIO.IN)
             flamesensor.readSensorData(GPIO.input(sensor["pin"]))
     GPIO.setup(18, GPIO.IN)
+    GPIO.setup(23, GPIO.OUT) 
     if GPIO.input(18):
         GPIO.output(23, True)
         time.sleep(1)
