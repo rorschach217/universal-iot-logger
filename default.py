@@ -44,6 +44,7 @@ while True:
             GPIO.setup(sensor["pin"], GPIO.IN)
             flamesensor.readSensorData(GPIO.input(sensor["pin"]))
         if sensor["sensor"] == "ultrasonic" and sensor["isEnabled"] == True:
+            print "enabled ultrasonic"
             distance = ultrasonicsensor.distance(GPIO, sensor)
             ultrasonicsensor.readSensorData(distance)
     time.sleep(5)
